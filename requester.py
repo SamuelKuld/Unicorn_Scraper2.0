@@ -22,8 +22,8 @@ def get_data(url):
             session.close()
             raise non_200_response(
                 f"Response Value Not 200 ; Response = {response.status_code}")
-        session.close()
-        return response.text.encode(response.encoding)
+        return response.text
+
     except Exception as e:
         logger.error(
             "Requester", f"When attempting to get data from URL: {url}; {e}")
