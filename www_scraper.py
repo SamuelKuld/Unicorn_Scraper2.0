@@ -16,11 +16,17 @@ class Scraper():
         return requester.get_page(self.get_url())
 
     def save_as_page(self):
-        logger.info("Www scraper", f"Getting and saving page {self.word.word}")
-        with open(f"www_html/{self.word.word}.html", "w+") as file:
-            file.write("")
-        with open(f"www_html/{self.word.word}.html", "a+") as file:
-            file.write(str(self.get_all_data()))
+        try:
+            data = self.get_all_data()
+            if not data == None:
+                logger.info("Www scraper",
+                            f"Getting and saving page {self.word.word}")
+                with open(f"www_html/{self.word.word}.html", "w+") as file:
+                    file.write("")
+                with open(f"www_html/{self.word.word}.html", "a+") as file:
+                    file.write(data)
+        except UnicodeEncodeError:
+            pass
 
     def tick(self):
         self.word.tick_with_adding()
