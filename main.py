@@ -72,7 +72,11 @@ class Thread(threading.Thread):
 
 
 if __name__ == "__main__":
-    istock_loop = Thread("istock_loop", istock_photo_loop)
-    www_loop = Thread("www_loop", www_photo_loop)
-    istock_loop.start()
-    www_loop.start()
+    working = True
+    if working:
+        istock_loop = Thread("istock_loop", istock_photo_loop)
+        www_loop = Thread("www_loop", www_photo_loop)
+        istock_loop.start()
+        www_loop.start()
+    else:
+        print("Gotta fix something")
